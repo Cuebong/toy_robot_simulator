@@ -80,7 +80,7 @@ class Requester(AbstractRequester):
             self.command_sent = True
 
     def get_request(self):
-        self.received_request = input("-------------------------------------------------------" +
+        self.received_request = input("\n-------------------------------------------------------\n" +
                                       "\nPlease enter one of the following commands:" +
                                       "\n\t- PLACE [X: int] [Y: int] [F: {NORTH, EAST, SOUTH, WEST}]" +
                                       "\n\t- MOVE" +
@@ -88,7 +88,7 @@ class Requester(AbstractRequester):
                                       "\n\t- RIGHT" +
                                       "\n\t- REPORT" +
                                       "\n\t- QUIT" +
-                                      "\nEnter Command: ")
+                                      "\n\nEnter Command: ")
 
     def run(self):
         print(f"[INFO] {self.world.world_name} has been set up and ready to receive commands.")
