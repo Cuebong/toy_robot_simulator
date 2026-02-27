@@ -23,8 +23,8 @@ class PointRobot(AbstractRobot):
         # declare permissible headings as a dict for look-up when resolving turning commands
         self.permissible_orientations = {'NORTH': 0, 'EAST': 90, 'SOUTH': 180, 'WEST': 270}
         # declare attributes used to temporarily store resulting X/Y from a planned move
-        self.planned_x = None
-        self.planned_y = None
+        self.planned_x = 0
+        self.planned_y = 0
 
     def plan_move(self, displace_x: int = 0, displace_y: int = 1) -> None:
         """

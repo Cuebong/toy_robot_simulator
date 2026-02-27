@@ -1,6 +1,7 @@
 from classes.Simulator import PointRobot, TableSimulation
 from classes.UserInterface import Requester
 
+
 def run_sequence1(sim: TableSimulation):
     # Test sequence
     sim.move_robot()
@@ -77,4 +78,3 @@ if __name__ == "__main__":
     application.run()
 
     print("Application has terminated.")
-
