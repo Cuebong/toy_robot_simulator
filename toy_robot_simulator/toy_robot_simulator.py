@@ -1,5 +1,5 @@
 from classes.Simulator import PointRobot, TableSimulation
-
+from classes.UserInterface import Requester
 
 def run_sequence1(sim: TableSimulation):
     # Test sequence
@@ -53,8 +53,9 @@ def run_sequence4(sim: TableSimulation):
 if __name__ == "__main__":
     # Create robot and simulator
     toy_robot = PointRobot(robot_name='Toy Robot')
-    simulator = TableSimulation(robot=toy_robot, world_name='Table Simulator')
+    table_simulator = TableSimulation(robot=toy_robot, world_name='Table Simulator')
 
+    """
     print("\n---------------- Running Test Sequence 1 ------------------")
     run_sequence1(simulator)
     simulator.remove_robot()
@@ -70,3 +71,10 @@ if __name__ == "__main__":
     print("\n---------------- Running Test Sequence 4 ------------------")
     run_sequence4(simulator)
     simulator.remove_robot()
+    """
+
+    application = Requester(simulator=table_simulator)
+    application.run()
+
+    print("Application has terminated.")
+
