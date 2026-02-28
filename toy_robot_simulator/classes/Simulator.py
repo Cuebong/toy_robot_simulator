@@ -22,9 +22,6 @@ class PointRobot(AbstractRobot):
         super().__init__(robot_name)
         # declare permissible headings as a dict for look-up when resolving turning commands
         self.permissible_orientations = {'NORTH': 0, 'EAST': 90, 'SOUTH': 180, 'WEST': 270}
-        # declare attributes used to temporarily store resulting X/Y from a planned move
-        self.planned_x = 0
-        self.planned_y = 0
 
     def plan_move(self, displace_x: int = 0, displace_y: int = 1) -> None:
         """
@@ -36,14 +33,13 @@ class PointRobot(AbstractRobot):
         # get current heading and convert angle to radians in right-hand thumb notation
         angle = -1 * self.permissible_orientations[self.orientation] * math.pi / 180
         # calculate resultant X and Y positions using 2D rotation matrix relationships
-        self.planned_x = self.x + int(displace_x*math.cos(angle) - displace_y*math.sin(angle))
-        self.planned_y = self.y + int(displace_x*math.sin(angle) + displace_y*math.cos(angle))
+        self.planned_x = self.x + round(displace_x*math.cos(angle) - displace_y*math.sin(angle))
+        self.planned_y = self.y + round(displace_x*math.sin(angle) + displace_y*math.cos(angle))
 
     def accept_move(self) -> None:
         """Updates robot X and Y pose using planned move resultant location."""
-        if (self.planned_x is not None) & (self.planned_y is not None):
-            self.x = self.planned_x
-            self.y = self.planned_y
+        self.x = self.planned_x
+        self.y = self.planned_y
 
     def turn_left(self) -> None:
         """
@@ -94,7 +90,7 @@ class TableSimulation(AbstractWorld):
         self.size_x = dim_x
         self.size_y = dim_y
         print(f"[INFO] {self.world_name} created with default dimensions",
-              f" [{self.size_x} x {self.size_y}] and origin ({self.origin_x}, {self.origin_y}).")
+              f"[{self.size_x} x {self.size_y}] and origin ({self.origin_x}, {self.origin_y}).")
 
     def place_robot(self, x: int = 0, y: int = 0, f: str = 'NORTH') -> bool:
         """
@@ -189,10 +185,10 @@ class TableSimulation(AbstractWorld):
         :returns: bool
         """
         if self.robot_in_world:
-            print(f"[INFO] {self.robot.robot_name}'s current pose in {self.world_name} is (X: {self.robot.x}, ",
+            print(f"[INFO] {self.robot.robot_name}'s current pose in {self.world_name} is (X: {self.robot.x},",
                   f"Y: {self.robot.y}, F: {self.robot.orientation}).")
             return True  # command succeeded
         else:
             print(f'[WARNING] {self.robot.robot_name} has not been placed in {self.world_name}.',
-                  ' Unable to report robot pose!')
+                  'Unable to report robot pose!')
             return False  # command rejected

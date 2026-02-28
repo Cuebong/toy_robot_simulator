@@ -36,7 +36,7 @@ class Requester(AbstractRequester):
 
     def check_request(self) -> InputErrorCodes:
         inputs = self.received_request.split(" ")
-        if inputs[0] == "PLACE":
+        if inputs[0].upper() == "PLACE":
             if len(inputs) < 4:
                 return InputErrorCodes.PLACE_NARGS_TOO_LOW
             elif len(inputs) > 4:
@@ -45,8 +45,8 @@ class Requester(AbstractRequester):
                 try:
                     self.place_request_x = int(inputs[1])
                     self.place_request_y = int(inputs[2])
-                    if inputs[3] in self.world.robot.permissible_orientations:
-                        self.place_request_f = inputs[3]
+                    if inputs[3].upper() in self.world.robot.permissible_orientations:
+                        self.place_request_f = inputs[3].upper()
                     else:
                         return InputErrorCodes.PLACE_F_UNKNOWN
                 except ValueError:
@@ -55,8 +55,8 @@ class Requester(AbstractRequester):
         else:
             if len(inputs) != 1:
                 return InputErrorCodes.COMMAND_ARGS_NOT_VALID
-            elif inputs[0] in self.accepted_commands:
-                self.requested_command = inputs[0]
+            elif inputs[0].upper() in self.accepted_commands:
+                self.requested_command = inputs[0].upper()
             else:
                 return InputErrorCodes.COMMAND_UNKNOWN
         self.command_sent = False
@@ -77,6 +77,7 @@ class Requester(AbstractRequester):
                     self.world.report_robot_location()
                 case "QUIT":
                     self.quit = True
+            self.action_counter += 1
             self.command_sent = True
 
     def get_request(self):
@@ -88,7 +89,7 @@ class Requester(AbstractRequester):
                                       "\n\t- RIGHT" +
                                       "\n\t- REPORT" +
                                       "\n\t- QUIT" +
-                                      "\n\nEnter Command: ")
+                                      "\n\nEnter Command: ")  # pragma no cover
 
     def run(self):
         print(f"[INFO] {self.world.world_name} has been set up and ready to receive commands.")
@@ -96,6 +97,7 @@ class Requester(AbstractRequester):
 
         while not self.quit:
             self.get_request()
+            self.input_counter += 1
             ret_code = self.check_request()
             match ret_code:
                 case InputErrorCodes.OKAY:
@@ -112,3 +114,4 @@ class Requester(AbstractRequester):
                     print("[ERROR] Unexpected arguments for requested command. Please try again without arguments.")
                 case InputErrorCodes.COMMAND_UNKNOWN:
                     print("[ERROR] Command not valid. Please try again.")
+        print("[INFO] QUIT command received. Application is terminating...")

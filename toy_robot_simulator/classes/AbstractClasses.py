@@ -37,22 +37,22 @@ class AbstractRobot(ABC):
     @abstractmethod
     def plan_move(self):
         """Provide implementation for planning a move action."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def accept_move(self):
         """Provide implementation for accepting a planned move."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def turn_left(self):
         """Provide implementation for turning the robot left."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def turn_right(self):
         """Provide implementation for turning the robot right."""
-        pass
+        pass  # pragma no cover
 
 
 class AbstractWorld(ABC):
@@ -94,35 +94,37 @@ class AbstractWorld(ABC):
         :type y: int
         :type f: str
         """
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def remove_robot(self):
         """Provide implementation for removing robot from the world."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def move_robot(self):
         """Provide implementation for moving a robot in the world."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def turn_robot_left(self):
         """Provide implementation for turning the robot left."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def turn_robot_right(self):
         """Provide implementation for turning the robot right."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def report_robot_location(self):
         """Provide implementation for reporting the robot location in the world."""
-        pass
+        pass  # pragma no cover
 
 
 class AbstractRequester(ABC):
+    input_counter: int
+    action_counter: int
     acceptable_commands: list[Any]
     quit: bool
     received_request: str
@@ -146,23 +148,26 @@ class AbstractRequester(ABC):
         self.place_request_f = ""
         self.command_sent = False
         self.quit = False
-        self.acceptable_commands = []  # list of accepted commands for application
+        self.accepted_commands = []  # list of accepted commands for application
+        self.action_counter = 0
+        self.input_counter = 0
 
     @abstractmethod
     def check_request(self) -> bool:
         """Provide implementation for checking received string request"""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def send_request(self):
         """Provide implementation for sending request to world."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def get_request(self):
         """Provide implementation for getting an input request."""
-        pass
+        pass  # pragma no cover
 
     @abstractmethod
     def run(self):
         """Provide implementation for running requester application until terminated"""
+        pass  # pragma no cover
