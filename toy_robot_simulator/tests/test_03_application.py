@@ -4,6 +4,10 @@ import pytest
 
 
 def monkey_patch_get_request(self):
+    """
+    Overrides the Requester.get_request() method to enable testing of sequences in the run() method without
+    requiring user input via Standard Input. Specifies a test sequence to iterate through.
+    """
     sequence = ["PLACE 1 1 4 NORTH",  # REJECTED TOO MANY ARGUMENTS
                 "place f 5 WEST",  # REJECTED X IS NOT INTEGER
                 "PLACE 1 SOUTH",  # REJECTED TOO FEW ARGUMENTS
@@ -29,16 +33,23 @@ def monkey_patch_get_request(self):
 
 @pytest.fixture
 def app_data():
+    """
+    Set up an instance of Requester called application that points to a table simulator and robot object.
+    """
     toy_robot = PointRobot(robot_name='Toy Robot')
     table_simulator = TableSimulation(robot=toy_robot, world_name='Table Simulator')
     application = Requester(simulator=table_simulator)
     func_type = type(application.get_request)
-    application.get_request = func_type(monkey_patch_get_request, application)
+    application.get_request = func_type(monkey_patch_get_request, application)  # monkey patch the get_request() method
     return application
 
 
 @pytest.mark.application
 def test_app_init(app_data):
+    """
+    Test the initialised instance to verify default values have been set to attributes. Individual failures
+    are captured in an error list that is checked and reported using assert statement.
+    """
     errors = []
     if not isinstance(app_data.world, TableSimulation):
         errors.append("[FAILURE] Error in assigning TableSimulation object in application.")  # pragma no cover
@@ -63,6 +74,10 @@ def test_app_init(app_data):
 
 @pytest.mark.application
 def test_app_check_request_valid(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies all valid requests. Individual failures
+    are captured in an error list that is checked and reported using assert statement.
+    """
     test_strings = ["PLACE 2 4 EAST",
                     "place 1 3 north",
                     "place 0 5 South",
@@ -84,6 +99,11 @@ def test_app_check_request_valid(app_data):
 
 @pytest.mark.application
 def test_app_check_request_place_nargs_low(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies errors involving too few arguments being
+    supplied for the PLACE command. Individual failures are captured in an error list that is checked and reported
+    using assert statement.
+    """
     test_strings = ["PLACE 2 EAST",
                     "PLACE 1 3",
                     "PLACE",
@@ -98,6 +118,11 @@ def test_app_check_request_place_nargs_low(app_data):
 
 @pytest.mark.application
 def test_app_check_request_place_nargs_high(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies errors involving too many arguments being
+    supplied for the PLACE command. Individual failures are captured in an error list that is checked and reported
+    using assert statement.
+    """
     test_strings = ["PLACE 2 2 4 EAST",
                     "PLACE 1 3 WEST 1",
                     "PLACE 4 1 NORTH 0 8",
@@ -112,6 +137,11 @@ def test_app_check_request_place_nargs_high(app_data):
 
 @pytest.mark.application
 def test_app_check_request_place_xy_not_int(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies errors involving noninteger values being
+    supplied for the PLACE command. Individual failures are captured in an error list that is checked and reported
+    using assert statement.
+    """
     test_strings = ["PLACE 2 s EAST",
                     "PLACE 1 3.5 NORTH",
                     "PLACE fsf 5 SOUTH",
@@ -126,6 +156,11 @@ def test_app_check_request_place_xy_not_int(app_data):
 
 @pytest.mark.application
 def test_app_check_request_place_f_unknown(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies errors involving unrecognised F arguments being
+    supplied for the PLACE command. Individual failures are captured in an error list that is checked and reported
+    using assert statement.
+    """
     test_strings = ["PLACE 2 2 EASST",
                     "PLACE 1 3 NOR",
                     "PLACE 0 0 hjhs",
@@ -140,6 +175,11 @@ def test_app_check_request_place_f_unknown(app_data):
 
 @pytest.mark.application
 def test_app_check_request_command_args_not_valid(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies errors involving unrecognised arguments being
+    supplied for non-PLACE command. Individual failures are captured in an error list that is checked and reported
+    using assert statement.
+    """
     test_strings = ["MOVE 2 2 EAST",
                     "MOVE 1 1",
                     "LEFT jhfg",
@@ -160,6 +200,10 @@ def test_app_check_request_command_args_not_valid(app_data):
 
 @pytest.mark.application
 def test_app_check_request_command_unknown(app_data):
+    """
+    Test the check_request method to ensure it correctly identifies errors involving unrecognised commands being sent.
+    Individual failures are captured in an error list that is checked and reported using assert statement.
+    """
     test_strings = ["",
                     "Pace",
                     "MOVEIT",
@@ -176,6 +220,9 @@ def test_app_check_request_command_unknown(app_data):
 
 @pytest.mark.application
 def test_app_send_request_place(app_data):
+    """
+    Test the send_request method with a valid PLACE command to verify that the robot executes the requested command.
+    """
     app_data.requested_command = "PLACE"
     app_data.place_request_x = 4
     app_data.place_request_y = 0
@@ -188,6 +235,9 @@ def test_app_send_request_place(app_data):
 
 @pytest.mark.application
 def test_app_send_request_move(app_data):
+    """
+    Test the send_request method with a valid MOVE command to verify that the robot executes the requested command.
+    """
     app_data.world.place_robot(x=0, y=0, f='NORTH')
     app_data.requested_command = "MOVE"
     app_data.command_sent = False
@@ -197,6 +247,9 @@ def test_app_send_request_move(app_data):
 
 @pytest.mark.application
 def test_app_send_request_left(app_data):
+    """
+    Test the send_request method with a valid LEFT command to verify that the robot executes the requested command.
+    """
     app_data.world.place_robot(x=0, y=0, f='NORTH')
     app_data.requested_command = "LEFT"
     app_data.command_sent = False
@@ -206,6 +259,9 @@ def test_app_send_request_left(app_data):
 
 @pytest.mark.application
 def test_app_send_request_right(app_data):
+    """
+    Test the send_request method with a valid RIGHT command to verify that the robot executes the requested command.
+    """
     app_data.world.place_robot(x=0, y=0, f='NORTH')
     app_data.requested_command = "RIGHT"
     app_data.command_sent = False
@@ -215,6 +271,10 @@ def test_app_send_request_right(app_data):
 
 @pytest.mark.application
 def test_app_send_request_report(app_data, capsys):
+    """
+    Test the send_request method with a valid REPORT command to verify that the simulator reports the position of the
+    robot to Standard Output.
+    """
     app_data.world.place_robot(x=3, y=4, f='WEST')
     app_data.requested_command = "REPORT"
     app_data.command_sent = False
@@ -227,6 +287,9 @@ def test_app_send_request_report(app_data, capsys):
 
 @pytest.mark.application
 def test_app_send_request_quit(app_data, capsys):
+    """
+    Test the send_request method with a valid QUIT command to verify that the quit attribute is correctly set.
+    """
     app_data.requested_command = "QUIT"
     app_data.command_sent = False
     app_data.send_request()
@@ -235,6 +298,10 @@ def test_app_send_request_quit(app_data, capsys):
 
 @pytest.mark.application
 def test_app_send_request_resend(app_data, capsys):
+    """
+    Test the send_request method with a MOVE request while the command sent flag is set to confirm it does not
+    re-send the MOVE command.
+    """
     app_data.world.place_robot(x=0, y=0, f='NORTH')
     app_data.requested_command = "MOVE"
     app_data.command_sent = True
@@ -244,6 +311,12 @@ def test_app_send_request_resend(app_data, capsys):
 
 @pytest.mark.application
 def test_app_run(app_data, capsys):
+    """
+    Test the run method using the pre-defined test sequence specified in the monkey_patch_get_request() override
+    method. Capsys is disabled to allow output messages from the application to display on the test console. The test
+    checks that the final position and orientation of the robot matches the expected result, which will reflect both
+    correct acceptance of valid commands and correct rejection of invalid commands.
+    """
     with capsys.disabled():
         print("\n ------------------------------------------------ "
               "\n[TEST INFO] Application test run output messages:"
