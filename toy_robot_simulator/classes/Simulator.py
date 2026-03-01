@@ -4,31 +4,36 @@ from classes.AbstractClasses import AbstractRobot, AbstractWorld
 
 class PointRobot(AbstractRobot):
     """Concrete robot class for a theoretical point robot with no geometry.
-    The point robot is able to turn on the spot and advances by one unit according to
-    its orientation when requested to move.
+    The point robot is able to turn on the spot and move according to the direction
+    of its orientation.
 
-    Its orientation is confined to four compass directions: North, East, South, West.
-    These are translated to degrees with the clockwise direction as positive, starting
+    Its orientation is defined by four compass directions: North, East, South, West.
+    These are converted to degrees with the clockwise direction as positive, starting
     from 0 degrees when facing North. North is assumed to correspond to the world's
     Y direction.
+
+    :param robot_name: Reference name to assign to this instance when initialised.
     """
-    permissible_orientations: dict[str, int]
+    permissible_orientations = {'NORTH': 0, 'EAST': 90, 'SOUTH': 180, 'WEST': 270}
+    """: dict[str, int]: The four possible orientation descriptors and their corresponding angle values in degrees."""
 
     def __init__(self, robot_name: str = 'Robot') -> None:
         """
-        Object Initialisation
-        :type robot_name: str
+        Object Initialisation. Assign default values to attributes (robot_name must be provided).
         """
         super().__init__(robot_name)
-        # declare permissible headings as a dict for look-up when resolving turning commands
+        # dict is used for look-up when resolving turning commands
         self.permissible_orientations = {'NORTH': 0, 'EAST': 90, 'SOUTH': 180, 'WEST': 270}
 
     def plan_move(self, displace_x: int = 0, displace_y: int = 1) -> None:
         """
-        Applies rotation to desired X and Y translation based on heading and assigns
-        to temporary storage attributes.
-        :type displace_y: int
-        :type displace_x: int
+        Applies 2D rotation to input X and Y displacement inputs based on robot's current orientation and
+        sums these to the robot's current X and Y positions. The resulting X and Y values are stored in the planned_x
+        and planned_y attributes. The robot's current X and Y positions can be updated to these values by calling
+        the accept_move() method.
+
+        :param displace_x: number of units to move along X direction (before rotation)
+        :param displace_y: number of units to move along Y direction (before rotation)
         """
         # get current heading and convert angle to radians in right-hand thumb notation
         angle = -1 * self.permissible_orientations[self.orientation] * math.pi / 180
@@ -37,54 +42,61 @@ class PointRobot(AbstractRobot):
         self.planned_y = self.y + round(displace_x*math.sin(angle) + displace_y*math.cos(angle))
 
     def accept_move(self) -> None:
-        """Updates robot X and Y pose using planned move resultant location."""
+        """Updates the robot's X and Y attributes with the values stored in planned_x and planned_y attributes, which
+        are obtained from calling the plan_move() method."""
         self.x = self.planned_x
         self.y = self.planned_y
 
     def turn_left(self) -> None:
         """
-        Turns robot 90 degrees left and updates current orientation, ensuring it is
-        within the range of [0, 360).
+        Steers the robot 90 degrees left and updates current orientation. This is calculated by looking up the angle
+        value for the corresponding orientation descriptor from the permissible_orientations dictionary, applying a -90
+        degrees rotation, and wrapping the result to ensure it is within the range of [0, 360). The resulting
+        orientation is determined by mapping the angle value back to the orientation descriptor in
+        permissible_orientations. Note that the positive direction for rotation is taken as clockwise based on the
+        representation used in permissible_orientations.
         """
-        # Rotation is negative in counter-clockwise direction
         heading = self._wrap_deg(self.permissible_orientations[self.orientation] - 90)
-        # look-up dictionary and search for corresponding heading angle to update orientation
         self.orientation = list(self.permissible_orientations.keys())[list(self.permissible_orientations.values()).index(heading)]
 
     def turn_right(self) -> None:
         """
-        Turns robot 90 degrees right and updates current orientation, ensuring it is
-        within the range of [0, 360).
+        Steers the robot 90 degrees right and updates current orientation. This is calculated by looking up the angle
+        value for the corresponding orientation descriptor from the permissible_orientations dictionary, applying a +90
+        degrees rotation, and wrapping the result to ensure it is within the range of [0, 360). The resulting
+        orientation is determined by mapping the angle value back to the orientation descriptor in
+        permissible_orientations. Note that the positive direction for rotation is taken as clockwise based on the
+        representation used in permissible_orientations.
         """
-        # Rotation is positive in clockwise direction
         heading = self._wrap_deg(self.permissible_orientations[self.orientation] + 90)
-        # look-up dictionary and search for corresponding heading angle to update orientation
         self.orientation = list(self.permissible_orientations.keys())[list(self.permissible_orientations.values()).index(heading)]
 
     @staticmethod
     def _wrap_deg(val: int) -> int:
         """
-        Internal method for wrapping degree values between [0, 360)
-        :type val: int
-        :returns: int
+        Internal method for wrapping an input value between [0, 360)
+        :param val: the value to be wrapped
+        :returns: the resulting value after applying wrapping operation
         """
         return val % 360
 
 
 class TableSimulation(AbstractWorld):
     """
-    Concrete class object for defining a Table Simulation. It provides proxy methods for commanding
+    Concrete class for a Table Simulation. It provides proxy methods for commanding
     a robot in the world such that table-imposed constraints are applied to prevent robot moves
-    that would lead to it falling from the table.
+    that would lead to it falling from the table. The class prints messages to StdOut to report the status of the
+    robot/success of an action when a command is performed and when requested using the REPORT command.
+
+    :param robot: The robot to load into the Table Simulation.
+    :param world_name: Reference name to be assigned to the Table Simulation.
+    :param dim_x: The x dimension for the created instance of the Table Simulation.
+    :param dim_y: The y dimension for the created instance of the Table Simulation.
     """
 
     def __init__(self, robot: PointRobot, world_name: str = 'Table', dim_x: int = 5, dim_y: int = 5) -> None:
         """
-        Object initialisation
-        :type dim_y: int
-        :type dim_x: int
-        :type world_name: str
-        :type robot: PointRobot
+        Object initialisation. Assigns default values to attributes (robot must be specified).
         """
         super().__init__(robot, world_name)
         self.size_x = dim_x
@@ -95,12 +107,13 @@ class TableSimulation(AbstractWorld):
     def place_robot(self, x: int = 0, y: int = 0, f: str = 'NORTH') -> bool:
         """
         Checks if the requested place location for the robot is within the dimensions of the
-        table. Updates the pose of the robot if it is within dimensions and return True,
-        otherwise rejects command and returns False.
-        :type f: string
-        :type y: int
-        :type x: int
-        :returns: bool
+        table. If valid, updates the pose of the robot and sets the robot_in_world flag to indicate the robot has been
+        placed on the table.
+
+        :param x: Target X position to place the robot.
+        :param y: Target Y position to place the robot.
+        :param f: Requested orientation to place the robot.
+        :returns: True if the PLACE request is valid (within table boundaries), otherwise False.
         """
         try:
             assert (x >= self.origin_x) & (x <= self.size_x + self.origin_x)
@@ -117,7 +130,8 @@ class TableSimulation(AbstractWorld):
         return True  # command succeeded
 
     def remove_robot(self) -> None:
-        """Resets robot location attributes to None and sets flag to denote robot is no longer on table."""
+        """Removes the robot by resetting robot location attributes to Default values and sets the robot_in_world
+        flag to denote robot is no longer on table."""
         self.robot.x = 0
         self.robot.y = 0
         self.robot.orientation = ""
@@ -127,9 +141,10 @@ class TableSimulation(AbstractWorld):
     def move_robot(self) -> bool:
         """
         Checks if the robot is on the table, and whether a move at its current location
-        would lead to it falling from the table. If the planned move is safe, accept the move and return
-        True, otherwise return False.
-        :returns: bool
+        would lead to it falling from the table. If the planned move is safe, it accepts the move and updates
+        the robot position attributes.
+
+        :returns: True if the move command is valid and does not lead to the robot falling from the table, otherwise False.
         """
         if self.robot_in_world:
             self.robot.plan_move()
@@ -152,9 +167,9 @@ class TableSimulation(AbstractWorld):
 
     def turn_robot_left(self) -> bool:
         """
-        Check if the robot is on the table. If so, carry out the left turn command and return True, otherwise
-        return False.
-        :returns: bool
+        Checks if the robot is on the table. If it is, call the robot's turn_left() method.
+
+        :returns: True if the robot is on the table and a turn_left command has been carried out, otherwise False.
         """
         if self.robot_in_world:
             self.robot.turn_left()
@@ -166,9 +181,9 @@ class TableSimulation(AbstractWorld):
 
     def turn_robot_right(self) -> bool:
         """
-        Check if the robot is on the table. If so, carry out the right turn command and return True, otherwise
-        return False.
-        :returns: bool
+        Checks if the robot is on the table. If it is, call the robot's turn_right() method.
+
+        :returns: True if the robot is on the table and a turn_right command has been carried out, otherwise False.
         """
         if self.robot_in_world:
             self.robot.turn_right()
@@ -180,9 +195,9 @@ class TableSimulation(AbstractWorld):
 
     def report_robot_location(self) -> bool:
         """
-        Check if the robot is on the table. If so, report its current pose and return True, otherwise
-        return False.
-        :returns: bool
+        Check if the robot is on the table. If it is, report the robot's current pose.
+
+        :returns: True if the robot is on the table and a report has been provided, otherwise False.
         """
         if self.robot_in_world:
             print(f"[INFO] {self.robot.robot_name}'s current pose in {self.world_name} is (X: {self.robot.x},",

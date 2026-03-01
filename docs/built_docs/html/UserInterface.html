@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Interface module &mdash; Toy Robot Simulator Application v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=34cd777e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Toy Robot Simulator Application" href="toy_robot_simulator.html" />
+    <link rel="prev" title="Simulator module" href="Simulator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Toy Robot Simulator Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="AbstractClasses.html">Abstract Classes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulator.html">Simulator module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Interface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#UserInterface.InputErrorCodes"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.OKAY"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.OKAY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.PLACE_NARGS_TOO_LOW"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.PLACE_NARGS_TOO_LOW</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.PLACE_NARGS_TOO_HIGH"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.PLACE_NARGS_TOO_HIGH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.PLACE_XY_NOT_INT"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.PLACE_XY_NOT_INT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.PLACE_F_UNKNOWN"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.PLACE_F_UNKNOWN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.COMMAND_ARGS_NOT_VALID"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.COMMAND_ARGS_NOT_VALID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.InputErrorCodes.COMMAND_UNKNOWN"><code class="docutils literal notranslate"><span class="pre">InputErrorCodes.COMMAND_UNKNOWN</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#UserInterface.Requester"><code class="docutils literal notranslate"><span class="pre">Requester</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.Requester.accepted_commands"><code class="docutils literal notranslate"><span class="pre">Requester.accepted_commands</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.Requester.check_request"><code class="docutils literal notranslate"><span class="pre">Requester.check_request()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.Requester.get_request"><code class="docutils literal notranslate"><span class="pre">Requester.get_request()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.Requester.run"><code class="docutils literal notranslate"><span class="pre">Requester.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#UserInterface.Requester.send_request"><code class="docutils literal notranslate"><span class="pre">Requester.send_request()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="toy_robot_simulator.html">Toy Robot Simulator Application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Toy Robot Simulator Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">User Interface module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/UserInterface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="user-interface-module">
+<h1>User Interface module<a class="headerlink" href="#user-interface-module" title="Link to this heading"></a></h1>
+<p>This module provides the concrete class for creating a “requester” application that implements the user interaction
+behaviour and main business logic for sending commands to the simulator.</p>
+<p>It uses Standard Input to obtain string requests from the user. This is parsed by a checker to validate the request
+before sending onwards to the simulator. These checks ensure that the input string complies with the format expected
+by the application and checks for the following:</p>
+<ol class="arabic simple">
+<li><p>Are there too few arguments for a PLACE command?</p></li>
+<li><p>Are there too many arguments for a PLACE command?</p></li>
+<li><p>Is the requested F value (the orientation) for a PLACE command unrecognised?</p></li>
+<li><p>Are there unrecognised arguments for the requested command (excluding PLACE)?</p></li>
+<li><p>Is the requested command unrecognised?</p></li>
+</ol>
+<p>The Requester will recognise the following commands:</p>
+<ol class="arabic simple">
+<li><p>PLACE X Y F</p></li>
+<li><p>MOVE</p></li>
+<li><p>LEFT</p></li>
+<li><p>RIGHT</p></li>
+<li><p>REPORT</p></li>
+<li><p>QUIT</p></li>
+</ol>
+<p>The first five commands above follow the descriptions given in the Toy Robot Simulator Exercise brief, while the QUIT
+command provides a way for the user to terminate the session cleanly. Note that whilst the simulator class that the
+Requester points to additionally include an implementation to remove the robot from the world, this is not exposed by the
+Requester as it is not a specified requirement within the Exercise brief. The remove() method has therefore been built-in
+for future-proofing purposes only.</p>
+<dl class="py class enum" id="module-UserInterface">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes">
+<em class="property"><span class="pre">enum</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UserInterface.</span></span><span class="sig-name descname"><span class="pre">InputErrorCodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UserInterface.InputErrorCodes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An Enumerator class to define error codes associated with parsing of user input strings. Checks are carried
+out by the check_request() method within the Requester class, which returns the corresponding error code.
+Only when the error code return is OKAY does the command get sent to the simulator.</p>
+<p>Valid values are as follows:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.OKAY">
+<span class="sig-name descname"><span class="pre">OKAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.OKAY:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.OKAY" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.PLACE_NARGS_TOO_LOW">
+<span class="sig-name descname"><span class="pre">PLACE_NARGS_TOO_LOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.PLACE_NARGS_TOO_LOW:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.PLACE_NARGS_TOO_LOW" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.PLACE_NARGS_TOO_HIGH">
+<span class="sig-name descname"><span class="pre">PLACE_NARGS_TOO_HIGH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.PLACE_NARGS_TOO_HIGH:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.PLACE_NARGS_TOO_HIGH" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.PLACE_XY_NOT_INT">
+<span class="sig-name descname"><span class="pre">PLACE_XY_NOT_INT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.PLACE_XY_NOT_INT:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.PLACE_XY_NOT_INT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.PLACE_F_UNKNOWN">
+<span class="sig-name descname"><span class="pre">PLACE_F_UNKNOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.PLACE_F_UNKNOWN:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.PLACE_F_UNKNOWN" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.COMMAND_ARGS_NOT_VALID">
+<span class="sig-name descname"><span class="pre">COMMAND_ARGS_NOT_VALID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.COMMAND_ARGS_NOT_VALID:</span> <span class="pre">5&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.COMMAND_ARGS_NOT_VALID" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.InputErrorCodes.COMMAND_UNKNOWN">
+<span class="sig-name descname"><span class="pre">COMMAND_UNKNOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;InputErrorCodes.COMMAND_UNKNOWN:</span> <span class="pre">6&gt;</span></em><a class="headerlink" href="#UserInterface.InputErrorCodes.COMMAND_UNKNOWN" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UserInterface.Requester">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UserInterface.</span></span><span class="sig-name descname"><span class="pre">Requester</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UserInterface.Requester" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRequester</span></code></p>
+<p>Concrete class implementation of the AbstractRequester interface. This implementation uses the Standard Input
+as the interface for users to input string commands to the simulator.</p>
+<p>This Requester exposes the following commands to the user: PLACE, MOVE, LEFT, RIGHT, REPORT, and QUIT. The
+interaction with the user begins when the run() method is called, which cycles through a continuous loop that
+requests an input from the user via Standard Input, validates the input, then sends the command to the loaded
+simulator. This loops continues until a valid QUIT command is received.</p>
+<p>The Requester returns error messages back to the user via the Standard Output whenever an invalid request is
+received. On these instances, no commands are sent to the simulator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<em>AbstractWorld</em>) – The target simulator that the Requester sends received commands to.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UserInterface.Requester.accepted_commands">
+<span class="sig-name descname"><span class="pre">accepted_commands</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['PLACE',</span> <span class="pre">'MOVE',</span> <span class="pre">'LEFT',</span> <span class="pre">'RIGHT',</span> <span class="pre">'REPORT',</span> <span class="pre">'QUIT']</span></em><a class="headerlink" href="#UserInterface.Requester.accepted_commands" title="Link to this definition"></a></dt>
+<dd><p>The list of accepted commands that this Requester will process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UserInterface.Requester.check_request">
+<span class="sig-name descname"><span class="pre">check_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UserInterface.Requester.check_request" title="Link to this definition"></a></dt>
+<dd><p>Checks a received string request stored in its received_request attribute and returns an error code if the
+supplied string does not meet accepted formats for a given command. If valid, the command is assigned to
+the requested_command attribute and the command_sent attribute is updated to notify the send_request() method
+that the current request has not been sent to the simulator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The associated error code for the received string request.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#UserInterface.InputErrorCodes" title="UserInterface.InputErrorCodes"><em>InputErrorCodes</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UserInterface.Requester.get_request">
+<span class="sig-name descname"><span class="pre">get_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UserInterface.Requester.get_request" title="Link to this definition"></a></dt>
+<dd><p>Gets a string request from the user via Standard Input. A message is displayed when user input is requested
+to provide instructions on how the string request should be formatted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UserInterface.Requester.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UserInterface.Requester.run" title="Link to this definition"></a></dt>
+<dd><p>Runs the Requester’s main business logic to initiate and maintain interaction with the user and simulator.
+Terminates when the quit flag is set by the send_request() method.</p>
+<p>Error messages are displayed to the user via Standard Output if received requests are invalid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UserInterface.Requester.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UserInterface.Requester.send_request" title="Link to this definition"></a></dt>
+<dd><p>Sends a validated request command to the simulator and increments the action counter. Sets the quit flag
+if a QUIT command has been received.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Simulator.html" class="btn btn-neutral float-left" title="Simulator module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="toy_robot_simulator.html" class="btn btn-neutral float-right" title="Toy Robot Simulator Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Cuebong Wong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

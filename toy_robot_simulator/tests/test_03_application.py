@@ -113,7 +113,7 @@ def test_app_check_request_place_nargs_high(app_data):
 @pytest.mark.application
 def test_app_check_request_place_xy_not_int(app_data):
     test_strings = ["PLACE 2 s EAST",
-                    "PLACE 1 3s NORTH",
+                    "PLACE 1 3.5 NORTH",
                     "PLACE fsf 5 SOUTH",
                     "PlACE 2 _1 WEST"]
     errors = []
