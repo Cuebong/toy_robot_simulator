@@ -15,9 +15,10 @@ jobs:
       uses: sphinx-notes/pages@v3
       with:
         publish: false
+        requirements_path: ./toy_robot_simulation/requirements.txt
+        documentation_path: ./docs/source
     - uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ${{ steps.deployment.outputs.artifact }}
-        requirements_path: ./toy_robot_simulation/requirements.txt
-        documentation_path: ./docs/source
+        
