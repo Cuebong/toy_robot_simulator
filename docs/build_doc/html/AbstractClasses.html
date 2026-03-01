@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abstract Classes module &mdash; Toy Robot Simulator Application v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=34cd777e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Simulator module" href="Simulator.html" />
+    <link rel="prev" title="Toy Robot Simulator Application documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Toy Robot Simulator Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Abstract Classes module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#AbstractClasses.AbstractRequester"><code class="docutils literal notranslate"><span class="pre">AbstractRequester</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.accepted_commands"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.accepted_commands</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.action_counter"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.action_counter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.check_request"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.check_request()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.command_sent"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.command_sent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.get_request"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.get_request()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.input_counter"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.input_counter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.place_request_f"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.place_request_f</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.place_request_x"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.place_request_x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.place_request_y"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.place_request_y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.quit"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.quit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.received_request"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.received_request</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.requested_command"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.requested_command</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.run"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.send_request"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.send_request()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRequester.world"><code class="docutils literal notranslate"><span class="pre">AbstractRequester.world</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#AbstractClasses.AbstractRobot"><code class="docutils literal notranslate"><span class="pre">AbstractRobot</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.accept_move"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.accept_move()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.orientation"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.orientation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.permissible_orientations"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.permissible_orientations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.plan_move"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.plan_move()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.planned_x"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.planned_x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.planned_y"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.planned_y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.robot_name"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.robot_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.turn_left"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.turn_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.turn_right"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.turn_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.x"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractRobot.y"><code class="docutils literal notranslate"><span class="pre">AbstractRobot.y</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#AbstractClasses.AbstractWorld"><code class="docutils literal notranslate"><span class="pre">AbstractWorld</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.move_robot"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.move_robot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.origin_x"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.origin_x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.origin_y"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.origin_y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.place_robot"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.place_robot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.remove_robot"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.remove_robot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.report_robot_location"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.report_robot_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.robot"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.robot</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.robot_in_world"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.robot_in_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.size_x"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.size_x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.size_y"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.size_y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.turn_robot_left"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.turn_robot_left()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.turn_robot_right"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.turn_robot_right()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#AbstractClasses.AbstractWorld.world_name"><code class="docutils literal notranslate"><span class="pre">AbstractWorld.world_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Simulator.html">Simulator module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UserInterface.html">User Interface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="toy_robot_simulator.html">Toy Robot Simulator Application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Toy Robot Simulator Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Abstract Classes module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/AbstractClasses.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="abstract-classes-module">
+<h1>Abstract Classes module<a class="headerlink" href="#abstract-classes-module" title="Link to this heading"></a></h1>
+<p>This module provides the interfaces for creating a robot, environment, and user interface for a toy robot simulator
+application. All methods defined within the classes in this module must be implemented by their sub-classes that
+inherit from these interfaces.</p>
+<dl class="py class" id="module-AbstractClasses">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AbstractClasses.</span></span><span class="sig-name descname"><span class="pre">AbstractRequester</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRequester" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for a generic requester. Used to create concrete classes that provide the implementation for user
+interactions with the simulator. The requester takes requests from the user and sends the request to a simulator
+of type AbstractWorld to interact with its robot.
+It provides abstract methods for receiving a request, verifying integrity of the request, and then sending the
+request for onwards processing by the simulator. The implementation of these methods are provided by the concrete
+subclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>simulator</strong> (<a class="reference internal" href="#AbstractClasses.AbstractWorld" title="AbstractClasses.AbstractWorld"><em>AbstractWorld</em></a>) – The simulator that the requester will send commands to.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.accepted_commands">
+<span class="sig-name descname"><span class="pre">accepted_commands</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.accepted_commands" title="Link to this definition"></a></dt>
+<dd><p>Stores a list of all recognised commands that the requester will process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.action_counter">
+<span class="sig-name descname"><span class="pre">action_counter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.action_counter" title="Link to this definition"></a></dt>
+<dd><p>A running counter for the number of actions accepted by the requester.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.check_request">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRequester.check_request" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for checking the validity of a request. Implementation to be provided by concrete class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if request is valid, otherwise False.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.command_sent">
+<span class="sig-name descname"><span class="pre">command_sent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.command_sent" title="Link to this definition"></a></dt>
+<dd><p>Flag to indicate if the latest received (valid) command has been sent to the simulator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.get_request">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRequester.get_request" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for getting a request from the user. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.input_counter">
+<span class="sig-name descname"><span class="pre">input_counter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.input_counter" title="Link to this definition"></a></dt>
+<dd><p>A running counter for the number of user input requests supplied to the requester.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.place_request_f">
+<span class="sig-name descname"><span class="pre">place_request_f</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.place_request_f" title="Link to this definition"></a></dt>
+<dd><p>Stores the requested robot orientation for a received PLACE command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.place_request_x">
+<span class="sig-name descname"><span class="pre">place_request_x</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.place_request_x" title="Link to this definition"></a></dt>
+<dd><p>Stores the requested x robot position for a received PLACE command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.place_request_y">
+<span class="sig-name descname"><span class="pre">place_request_y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.place_request_y" title="Link to this definition"></a></dt>
+<dd><p>Stores the requested y robot position for a received PLACE command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.quit">
+<span class="sig-name descname"><span class="pre">quit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.quit" title="Link to this definition"></a></dt>
+<dd><p>Flag to indicate if a request to terminate interactions with the simulator has been received.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.received_request">
+<span class="sig-name descname"><span class="pre">received_request</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.received_request" title="Link to this definition"></a></dt>
+<dd><p>Stores the received request from the user as a string command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.requested_command">
+<span class="sig-name descname"><span class="pre">requested_command</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.requested_command" title="Link to this definition"></a></dt>
+<dd><p>Stores the latest validated requested command received from the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRequester.run" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for running the Requester. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.send_request">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRequester.send_request" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for sending a validated request to the simulator. Implementation to be provided by concrete
+class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRequester.world">
+<span class="sig-name descname"><span class="pre">world</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#AbstractClasses.AbstractRequester.world" title="Link to this definition"></a></dt>
+<dd><p>A world object representing the simulator, which implements the AbstractWorld interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#AbstractClasses.AbstractWorld" title="AbstractClasses.AbstractWorld">AbstractWorld</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AbstractClasses.</span></span><span class="sig-name descname"><span class="pre">AbstractRobot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Robot'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRobot" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for a generic mobile robot.
+Creates an abstract robot with basic attributes to express current and planned X/Y coordinates, orientation,
+and a reference name.
+This interface defines abstract methods for driving and steering the robot. However, the implementation of these
+abstract methods must be provided by the concrete classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>robot_name</strong> (<em>str</em>) – Reference name to be assigned to instance.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.accept_move">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">accept_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRobot.accept_move" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for accepting (and executing) a planned move.
+Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.orientation">
+<span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.orientation" title="Link to this definition"></a></dt>
+<dd><p>The robot’s current orientation. This should be a member of permissible_orientations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.permissible_orientations">
+<span class="sig-name descname"><span class="pre">permissible_orientations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.permissible_orientations" title="Link to this definition"></a></dt>
+<dd><p>Stores each possible orientation descriptor as a key value pair with its corresponding
+quantitative angle value (e.g. in degrees).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[Any, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.plan_move">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRobot.plan_move" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for planning a robot move. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.planned_x">
+<span class="sig-name descname"><span class="pre">planned_x</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.planned_x" title="Link to this definition"></a></dt>
+<dd><p>The robot’s planned x position generated from the plan_move() method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.planned_y">
+<span class="sig-name descname"><span class="pre">planned_y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.planned_y" title="Link to this definition"></a></dt>
+<dd><p>The robot’s planned y position generated from the plan_move() method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.robot_name">
+<span class="sig-name descname"><span class="pre">robot_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.robot_name" title="Link to this definition"></a></dt>
+<dd><p>Reference name of robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.turn_left">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turn_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRobot.turn_left" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for steering left. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.turn_right">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turn_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractRobot.turn_right" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for steering right. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.x" title="Link to this definition"></a></dt>
+<dd><p>The robot’s current x position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractRobot.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractRobot.y" title="Link to this definition"></a></dt>
+<dd><p>The robot’s current y position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AbstractClasses.</span></span><span class="sig-name descname"><span class="pre">AbstractWorld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'World'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface for a generic world. Used to create concrete classes to describe simulator environments.
+The interface provides basic attributes to describe the world’s X/Y dimensions, origin, and reference name.
+The world stores information about the robot to be used with its environment and keeps track of whether the
+robot is placed in the world. Implementations for all abstract methods must be provided by the concrete subclass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="#AbstractClasses.AbstractRobot" title="AbstractClasses.AbstractRobot"><em>AbstractRobot</em></a>) – Robot object to be used with the world.</p></li>
+<li><p><strong>world_name</strong> (<em>str</em>) – Reference name to be assigned to instance.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.move_robot">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_robot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld.move_robot" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for moving the robot in the world. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.origin_x">
+<span class="sig-name descname"><span class="pre">origin_x</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.origin_x" title="Link to this definition"></a></dt>
+<dd><p>The x coordinate of the world origin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.origin_y">
+<span class="sig-name descname"><span class="pre">origin_y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.origin_y" title="Link to this definition"></a></dt>
+<dd><p>The y coordinate of the world origin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.place_robot">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">place_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld.place_robot" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for placing a robot into the world. Implementation to be provided by concrete class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>int</em>) – X position to place robot.</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – Y position to place robot.</p></li>
+<li><p><strong>f</strong> (<em>str</em>) – Orientation descriptor for placement of robot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.remove_robot">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_robot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld.remove_robot" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for removing a robot from the world. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.report_robot_location">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">report_robot_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld.report_robot_location" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for reporting the robot’s location in the world. Implementation to be provided by concrete
+class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.robot">
+<span class="sig-name descname"><span class="pre">robot</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.robot" title="Link to this definition"></a></dt>
+<dd><p>A robot object that implements the AbstractRobot interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#AbstractClasses.AbstractRobot" title="AbstractClasses.AbstractRobot">AbstractRobot</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.robot_in_world">
+<span class="sig-name descname"><span class="pre">robot_in_world</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.robot_in_world" title="Link to this definition"></a></dt>
+<dd><p>Flag to indicate the robot is placed in the world when True, otherwise False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.size_x">
+<span class="sig-name descname"><span class="pre">size_x</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.size_x" title="Link to this definition"></a></dt>
+<dd><p>The x dimension of the world.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.size_y">
+<span class="sig-name descname"><span class="pre">size_y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.size_y" title="Link to this definition"></a></dt>
+<dd><p>The y dimension of the world.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.turn_robot_left">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turn_robot_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld.turn_robot_left" title="Link to this definition"></a></dt>
+<dd><p>Abstract method for steering a robot left in the world. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.turn_robot_right">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turn_robot_right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AbstractClasses.AbstractWorld.turn_robot_right" title="Link to this definition"></a></dt>
+<dd><p>Implementation for steering a robot right in the world. Implementation to be provided by concrete class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AbstractClasses.AbstractWorld.world_name">
+<span class="sig-name descname"><span class="pre">world_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'World'</span></em><a class="headerlink" href="#AbstractClasses.AbstractWorld.world_name" title="Link to this definition"></a></dt>
+<dd><p>Reference name for the world.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Toy Robot Simulator Application documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Simulator.html" class="btn btn-neutral float-right" title="Simulator module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Cuebong Wong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
