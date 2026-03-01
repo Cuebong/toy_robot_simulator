@@ -35,5 +35,5 @@ html_static_path = ['_static']
 
 autodoc_typehints = "description"
 
-sys.path.insert(0, os.path.abspath('../../toy_robot_simulator/classes'))
-sys.path.insert(0, os.path.abspath('../../toy_robot_simulator'))
+sys.path.insert(0, os.path.abspath('../toy_robot_simulator/classes'))
+sys.path.insert(0, os.path.abspath('../toy_robot_simulator'))
