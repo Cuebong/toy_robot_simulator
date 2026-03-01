@@ -21,9 +21,8 @@ jobs:
         python -m pip install --upgrade pip setuptools
         pip install sphinx sphinx_rtd_theme enum-tools[sphinx]
     - name: Sphinx build
-      working-directory: docs
       run: |
-        make html
+        sphinx-build docs _build
     - name: Deploy to Github Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
