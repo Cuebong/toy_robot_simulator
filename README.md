@@ -4,13 +4,15 @@ This package provides a Python solution to the Toy Robot Simulator exercise. It 
 
 ## Dependencies
 
+No dependencies outside of the base Python 3 installation is required to run the application Python script (See [Section](#running-the-application)). Dependencies are only required for running lint, test scripts, and generating documentation.
+
 The full list of dependencies can be found in requirements.txt. To install, run the following (the instructions below assumes pip has been installed):
 
     python3 -m venv /path/to/target/venv/directory [optional]
     . /path/to/target/venv/directory/bin/activate [optional]
     pip install -r /path/to/requirements.txt
 
-Note that the above includes setting up and activating a Python virtual environment. This is optional but recommended to avoid conflicting dependencies already installed within the local system.
+The above includes setting up and activating a Python virtual environment. This is optional but recommended to avoid conflicting dependencies already installed within the local system.
 
 ## Documentation
 
@@ -33,7 +35,7 @@ To run the linter and test scripts, enter the following commands on a terminal:
     flake8 --statistics
     pytest -v
 
-## Continuous Integration
+## 4. Continuous Integration
 
 A lint and test workflow has been created for this package that is triggered on any push and pull request on the Main branch.
     
