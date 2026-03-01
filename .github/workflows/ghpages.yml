@@ -21,8 +21,7 @@ jobs:
         pip install sphinx sphinx_rtd_theme enum-tools[sphinx]
     - name: Deploy to Github Pages
       run: |
-        cd ./docs
-        make html
+        sphinx-build docs _build
     - name: Deploy to Github Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
