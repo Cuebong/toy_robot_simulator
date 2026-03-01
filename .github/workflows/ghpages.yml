@@ -20,7 +20,7 @@ jobs:
         python -m pip install --upgrade pip setuptools
         pip install sphinx sphinx_rtd_theme enum-tools[sphinx]
     - name: Sphinx build
-      working-directory: ./docs
+      working-directory: docs
       run: |
         make html
     - name: Deploy to Github Pages
